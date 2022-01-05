@@ -3,6 +3,19 @@ import styled from "styled-components";
 type Props = {
   label: string;
   url: string;
+  scroll: string;
+}
+
+const clickHandler = (scroll: string) => {
+  const element = document.getElementById(scroll);
+  if (element === null) {
+    return;
+  }
+  element.scrollIntoView({
+    behavior: "smooth",
+    block: "nearest",
+    inline: "nearest"
+  });
 }
 
 export default function HeaderItem(props: Props) {
@@ -25,7 +38,7 @@ export default function HeaderItem(props: Props) {
   return (
     <ItemWrapper>
       <ItemBox>
-        <ItemLabel href={props.url}>
+        <ItemLabel onClick={ () => clickHandler(props.scroll)} href={props.url}>
           {props.label}
         </ItemLabel>
       </ItemBox>
