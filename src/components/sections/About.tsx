@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { Container, Row, Col } from "react-bootstrap";
 import Icon from "../../logo.svg";
-import HeaderLabel from "../HeaderLabel";
 
 type ContentTextProps = {
   text: string;
@@ -26,24 +25,21 @@ const Contents = function (props: any) {
   `;
   return (
     <Container fluid="md" className="h-100">
-      <HeaderLabel text="About" />
-      <Row className="h-100">
-        <Col md={6} className="w-100 h-100">
+      <Row className="h-100 align-items-center">
+        <Col md={6} className="w-100 h-100 d-flex align-items-top justify-content-center">
           <Contents className="d-flex align-items-center justify-content-center">
             <img src={Icon} alt="female-worker-checking-data.png" />
           </Contents>
         </Col>
-        <Col md={6} className="w-100 h-100">
-          <Contents className="d-flex align-items-center justify-content-center">
-            <Col>
-              <ContentText text={`
+        <Col md={6} className="w-100 h-100 d-flex align-items-center justify-content-left">
+          <Contents className="d-flex align-items-center justify-content-left">
+            <ContentText text={`
               はじめまして、Naokiです。
               SES系企業、受託開発企業を経験して今に至ります。
               SES系企業では主にJavaを使用し、
               受託開発起業では主にJavaScript(TypeScript含む)を使用して
               開発を行なっておりました。
               `} />
-            </Col>
           </Contents>
         </Col>
       </Row>
@@ -52,9 +48,12 @@ const Contents = function (props: any) {
 };
 
 export default function About(props: any) {
+  const About = styled.section`
+    vertical-align: middle;
+  `
   return (
-    <section>
+    <About>
       <Contents />
-    </section>
+    </About>
   );
 }

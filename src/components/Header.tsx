@@ -6,7 +6,7 @@ import { Container, Row, Col } from "react-bootstrap";
 export default function Header(props: any) {
   const Header = styled.header`
     height: 72px;
-    background-color: #1234;
+    background-color: #000;
     text-align: center;
     position: fixed;
     width: 100%;
