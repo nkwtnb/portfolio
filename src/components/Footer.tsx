@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import HeaderItem from "./HeaderItem";
-import { Container, Row, Col } from "react-bootstrap";
 
 export default function Footer(props: any) {
   const Footer = styled.footer`

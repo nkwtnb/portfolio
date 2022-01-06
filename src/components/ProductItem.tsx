@@ -1,6 +1,6 @@
 import { Container, Row, Col } from "react-bootstrap";
 import styled from "styled-components";
-import image from "../resources/images/product1.png";
+import NoImage from "../resources/images/noimage.png";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,12 +8,20 @@ import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 type IconProps = {
   name: IconProp;
+  type: "github" | "link";
+  url: string;
 }
 
+// プロダクトカードの右上アイコン
+// URLが未設定であれば描画しない
 const Icon = function (props: IconProps) {
-  return (
-    <span style={{padding: "0px 10px"}}><FontAwesomeIcon icon={props.name}></FontAwesomeIcon></span>
-  );
+  if (props.url) {
+    return (
+      <span style={{padding: "0px 10px"}}><FontAwesomeIcon icon={props.name}></FontAwesomeIcon></span>
+    );
+  } else {
+    return <></>;
+  }
 }
 
 type ProductItem = {
@@ -21,6 +29,7 @@ type ProductItem = {
     title: string;
     detail: string;
     skills: string[];
+    image?: string;
     github?: string;
     url?: string;
   }[]
@@ -43,25 +52,28 @@ const Item = function (props: any) {
               <span style={{fontSize: "18px", fontWeight: "bold"}}>{props.title}</span>
             </div>
             <div style={{display: "table-cell", textAlign: "right"}}>
-              <span><Icon name={faGithub}></Icon></span>
-              <span><Icon name={faExternalLinkAlt}></Icon></span>
+              <span><Icon type="github" url={props.github} name={faGithub}></Icon></span>
+              <span><Icon type="link" url={props.url} name={faExternalLinkAlt}></Icon></span>
             </div>
           </div>
           {/* プロダクトカード：イメージ */}
-          <div style={{height: 350}}>
-            <img src={image} style={{width: "100%", height: "auto"}}/>
+          <div className="d-flex align-items-center" style={{height: 350, borderTop: "1px solid #ddd", borderBottom: "1px solid #ddd"}}>
+            <img src={props.image} style={{width: "100%", height: "auto"}}/>
           </div>
           {/* プロダクトカード：説明エリア */}
           <div style={{padding: 8}}>
             <div style={{fontSize: "12px", fontWeight: "Bold"}}>説明</div>
-            <div style={{height: "40px", fontSize: "12px"}}>
+            <div style={{height: "40px", fontSize: "12px", whiteSpace: "break-spaces"}}>
               {props.detail}
             </div>
             <div style={{marginTop: 20}}></div>
             <div style={{fontSize: "12px", fontWeight: "Bold"}}>言語、ライブラリなど</div>
-            <div style={{fontSize: "12px"}}>
+            <div style={{fontSize: "12px",  whiteSpace: "break-spaces"}}>
               {
-                props.skills.join(", ")
+                props.skills.map((skill: string, index: number) => {
+                  const comma: string = (index + 1) < props.skills.length ? ", " : "";
+                  return <span style={{display: "inline-block"}} key={index}>{skill + comma}</span>
+                })
               }
             </div>
           </div>
@@ -76,7 +88,17 @@ export default function ProductItem(props: ProductItem) {
     <>
       {
         props.items.map((content, index) => {
-          return <Item key={index} skills={content.skills} title={content.title} detail={content.detail} />
+          // プロダクトイメージ未設定の場合はNoImageを設定
+          const image = content.image ? content.image : NoImage;
+          return <Item
+                    key={index}
+                    image={image}
+                    skills={content.skills}
+                    title={content.title}
+                    detail={content.detail}
+                    github={content.github}
+                    url={content.url}
+                  />;
         })
       }
     </>

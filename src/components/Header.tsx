@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import HeaderItem from "./HeaderItem";
-import Spacer from "./Spacer";
 import { Container, Row, Col } from "react-bootstrap";
 
 export default function Header(props: any) {
@@ -21,9 +20,6 @@ export default function Header(props: any) {
           <Col md={12}>
             <HeaderItem url="#1" scroll="about" label="About"></HeaderItem>
             <HeaderItem url="#2" scroll="products" label="Products"></HeaderItem>
-            <HeaderItem url="#3" scroll="contact" label="Contact"></HeaderItem>
-            <HeaderItem url="#3" scroll="contact" label="Contact"></HeaderItem>
-            <HeaderItem url="#3" scroll="contact" label="Contact"></HeaderItem>
             <HeaderItem url="#3" scroll="contact" label="Contact"></HeaderItem>
           </Col>
         </Row>
