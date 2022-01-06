@@ -17,7 +17,11 @@ type IconProps = {
 const Icon = function (props: IconProps) {
   if (props.url) {
     return (
-      <span style={{padding: "0px 10px"}}><FontAwesomeIcon icon={props.name}></FontAwesomeIcon></span>
+      <span style={{padding: "0px 10px", color: "#000"}}>
+        <a href={props.url} style={{ color: "#000"}} target="_blank">
+          <FontAwesomeIcon icon={props.name}></FontAwesomeIcon>
+        </a>
+      </span>
     );
   } else {
     return <></>;
