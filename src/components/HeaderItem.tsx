@@ -34,6 +34,11 @@ export default function HeaderItem(props: Props) {
     padding: 0px 8px;
     color: white;
     text-decoration: none;
+    &:hover {
+      color: white;
+      text-decoration: none;
+      background-color: #343434;
+    }
   `;
   return (
     <ItemWrapper>

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Col } from "react-bootstrap";
 
 type HeaderLabelProps = {
+  id: string;
   text: string;
   color?: string;
 }
@@ -16,7 +17,7 @@ export default function HeaderLabel(props: HeaderLabelProps) {
   `
   return (
     <Col>
-      <Label className="text-center">
+      <Label className="text-center" id={props.id}>
         {props.text}
       </Label>
     </Col>

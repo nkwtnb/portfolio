@@ -12,11 +12,11 @@ function App() {
     <>
       <Header />
       <Spacer inline={false} axis='y' value={72} />
-      <HeaderLabel text="About" />
+      <HeaderLabel text="About" id="about" />
       <About />
-      <HeaderLabel text="Products" />
+      <HeaderLabel text="Products" id="products"/>
       <Products />
-      <HeaderLabel text="Contact" />
+      <HeaderLabel text="Contact" id="contact"/>
       <Contact />
       <Footer />
     </>
