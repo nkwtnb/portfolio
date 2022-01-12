@@ -34,10 +34,11 @@ export default function HeaderItem(props: Props) {
     padding: 0px 8px;
     color: white;
     text-decoration: none;
+    transition: 0.2s;
     &:hover {
-      color: white;
+      color: #000;
       text-decoration: none;
-      background-color: #343434;
+      background-color: #fff;
     }
   `;
   return (
