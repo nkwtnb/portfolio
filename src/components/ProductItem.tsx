@@ -39,16 +39,17 @@ type ProductItem = {
   }[]
 }
 
+//各プロダクトカード
+const Card = styled.div`
+  width: 340px;
+  height: 540px;
+  border: 1px solid #ddd;
+`;
+
 const Item = function (props: any) {
-  //各プロダクトカード
-  const Item = styled.div`
-    width: 340px;
-    height: 540px;
-    border: 1px solid #ddd;
-  `;
   return (
     <Col md={4} className="w-100 d-flex justify-content-center" style={{height: "100%", paddingTop: 20}}>
-      <Item className="d-flex align-items-top justify-content-center">
+      <Card className="d-flex align-items-top justify-content-center">
         <Container style={{ padding: 0 }}>
           {/* プロダクトカード：ヘッダ */}
           <div style={{display: "table", height: 40, width: "100%", padding: "8px"}}>
@@ -82,7 +83,7 @@ const Item = function (props: any) {
             </div>
           </div>
         </Container>
-      </Item>
+      </Card>
     </Col>
   )
 }

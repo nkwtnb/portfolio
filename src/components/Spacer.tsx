@@ -6,14 +6,15 @@ type Props = {
   inline: boolean;
 }
 
-export default function Spacer(props: Props) {
-  const Spacer = styled.span`
-    display: ${props.inline ? "inline-block" : "block"};
-    ${props.axis === "x" ? "width: " + props.value + "px" : ""};
-    ${props.axis === "y" ? "height: " + props.value + "px"  : ""};
-  `;
+const SpacerComponent = styled.span<{axis: string, value: number, inline: boolean}>`
 
+display: ${(props) => props.inline ? "inline-block" : "block"};
+${(props) => props.axis === "x" ? "width: " + props.value + "px" : ""};
+${(props) => props.axis === "y" ? "height: " + props.value + "px"  : ""};
+`;
+
+export default function Spacer(props: Props) {
   return (
-    <Spacer />
+    <SpacerComponent axis={props.axis} value={props.value} inline={props.inline}/>
   );
 }

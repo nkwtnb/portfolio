@@ -1,13 +1,11 @@
 import styled from "styled-components";
 import { Container, Row } from "react-bootstrap";
 import ProductItem from "../ProductItem";
+import Product1 from "../../resources/images/product1.png";
+import NoImage from "../../resources/images/noimage.png";
+import Monologue from "../../resources/images/monologue.png";
 
 const Contents = function (props: any) {
-  const Contents = styled.div`
-    margin: auto;
-    width: 100%;
-    height: 100%;
-  `;
   return (
     <Container fluid="md" className="h-100 d-flex align-items-top justify-content-center">
       <Row className="h-100 w-100">
@@ -16,28 +14,26 @@ const Contents = function (props: any) {
             {
               title: "Portfolio",
               detail: "自分のポートフォリオページです。（このページ）",
-              image: require("../../resources/images/product1.png"),
+              image: Product1.src,
               github: "https://github.com/nkwtnb/gh-pages-portfolio",
               url: "https://nkwtnb.github.io/gh-pages-portfolio/",
               skills: ["TypeScript", "React", "Bootstrap(React-Bootstrap)", "styled-components"]
             },
             {
-              title: "Product 2",
-              detail: "プロダクトの説明をここに書きます。",
-              image: require("../../resources/images/noimage.png"),
-              skills: []
+              title: "Monologue",
+              detail: "Twitterを参考にしたSNSです。画像の投稿、OGPの表示などを実装。",
+              image: Monologue.src,
+              github: "https://github.com/nkwtnb/twitter-clone",
+              url: "https://monologue.naoki-w.com",
+              skills: ["TypeScript", "React", "React Router", "PHP", "Laravel"]
             },
-            // {
-            //   title: "Product 3",
-            //   detail: "プロダクトの説明をここに書きます。",
-            //   github: "htts:/hogehoge",
-            //   skills: []
-            // },
-            // {
-            //   title: "Product 4",
-            //   detail: "プロダクトの説明をここに書きます。",
-            //   skills: []
-            // },
+            {
+              title: "OGParser",
+              detail: "WebページのOGPを取得するライブラリです。",
+              github: "https://github.com/nkwtnb/OGParser",
+              image: NoImage.src,
+              skills: ["PHP"]
+            },
           ]
         } />
       </Row>
@@ -46,11 +42,9 @@ const Contents = function (props: any) {
 };
 
 export default function Products(props: any) {
-  const Products = styled.section`
-  `
   return (
-    <Products>
+    <section>
       <Contents />
-    </Products>
+    </section>
   );
 }
