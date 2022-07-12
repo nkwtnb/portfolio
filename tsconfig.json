@@ -18,9 +18,15 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "preserve",
+    "incremental": true
+    // "typeRoots": ["./@types/importImage.d.ts"]
   },
   "include": [
-    "src"
+    "src",
+    "next-env.d.ts"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }
