@@ -42,7 +42,7 @@ const Contents = function (props: any) {
           <ContentsWrapper className="d-flex align-items-center justify-content-left">
             <ContentText text={`
               はじめまして、Naokiです。
-              SES系企業、受託開発企業でプログラマとして従事してきました。
+              SES系企業、受託開発系企業でプログラマとして従事してきました。
               フロントエンドに軸足を置いておりますが、バックエンドにも興味を持っています。
               詳しい経歴は別途職務経歴書をご確認いただければと思います。
               `} />
