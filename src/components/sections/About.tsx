@@ -42,10 +42,9 @@ const Contents = function (props: any) {
           <ContentsWrapper className="d-flex align-items-center justify-content-left">
             <ContentText text={`
               はじめまして、Naokiです。
-              SES系企業、受託開発企業を経験して今に至ります。
-              SES系企業では主にJavaを使用し、
-              受託開発企業では主にJavaScript(TypeScript含む)を使用して
-              開発を行なっておりました。
+              SES系企業、受託開発企業でプログラマとして従事してきました。
+              フロントエンドに軸足を置いておりますが、バックエンドにも興味を持っています。
+              詳しい経歴は別途職務経歴書をご確認いただければと思います。
               `} />
           </ContentsWrapper>
         </Col>
