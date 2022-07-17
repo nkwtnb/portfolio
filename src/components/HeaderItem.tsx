@@ -7,15 +7,14 @@ type Props = {
 }
 
 const clickHandler = (scroll: string) => {
+  const HEADER_HEIGHT = 30;
   const element = document.getElementById(scroll);
   if (element === null) {
     return;
   }
-  element.scrollIntoView({
-    behavior: "smooth",
-    block: "nearest",
-    inline: "nearest"
-  });
+  var rect = element.getBoundingClientRect();
+  var elemtop = rect.top + window.pageYOffset;
+  document.documentElement.scrollTop = elemtop - HEADER_HEIGHT;
 }
 
 const ItemWrapper = styled.div`
