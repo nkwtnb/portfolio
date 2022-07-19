@@ -8,7 +8,7 @@ type HeaderLabelProps = {
 }
 
 const Label = styled.div<{color1: string | undefined}>`
-font-size: 30px;
+font-size: 40px;
 color: ${(props) => props.color1 ? props.color1 : "#484848"};
 font-weight: bold;
 width: 100%;
