@@ -21,7 +21,7 @@ const Contact = function (props: any) {
         </Row>
         <Row>
           <Col className="justify-content-center d-flex mt-2">
-            <img src={mail.src}/>
+            <img src={mail.src} style={{maxWidth: "inherit"}}/>
           </Col>
         </Row>
       </Container>
