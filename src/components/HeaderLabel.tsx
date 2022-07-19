@@ -7,17 +7,18 @@ type HeaderLabelProps = {
   color?: string;
 }
 
+const Label = styled.div<{color1: string | undefined}>`
+font-size: 40px;
+color: ${(props) => props.color1 ? props.color1 : "#484848"};
+font-weight: bold;
+width: 100%;
+padding-top: 40px;
+`;
+
 export default function HeaderLabel(props: HeaderLabelProps) {
-  const Label = styled.div`
-    font-size: 30px;
-    color: ${props.color ? props.color : "#484848"};
-    font-weight: bold;
-    width: 100%;
-    padding-top: 40px;
-  `
   return (
     <Col>
-      <Label className="text-center" id={props.id}>
+      <Label className="text-center" id={props.id} color1={props.color}>
         {props.text}
       </Label>
     </Col>

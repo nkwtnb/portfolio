@@ -5,42 +5,48 @@ import Profile from "../../resources/images/profile.png";
 type ContentTextProps = {
   text: string;
 }
+
+const Text = styled.p`
+white-space: pre-line;
+line-height: 36px;
+font-size: 16px;
+color: #2a2a2a;
+`;
+
+const ContentsWrapper = styled.div`
+margin: auto;
+width: 100%;
+height: 100%;
+`;
+
+const AboutWrapper = styled.section`
+vertical-align: middle;
+`;
+
 const ContentText = function (props: ContentTextProps) {
-  const Text = styled.p`
-    white-space: pre-line;
-    line-height: 36px;
-    font-size: 16px;
-    color: #2a2a2a;
-  `
   return (
     <Text>{props.text}</Text>
   );
 };
 
 const Contents = function (props: any) {
-  const Contents = styled.div`
-    margin: auto;
-    width: 100%;
-    height: 100%;
-  `;
   return (
     <Container fluid="md" className="h-100">
       <Row className="h-100 align-items-center">
         <Col md={6} className="w-100 h-100 d-flex align-items-top justify-content-center">
-          <Contents className="d-flex align-items-center justify-content-center">
-            <img src={Profile}/>
-          </Contents>
+          <ContentsWrapper className="d-flex align-items-center justify-content-center">
+            <img src={Profile.src}/>
+          </ContentsWrapper>
         </Col>
         <Col md={6} className="w-100 h-100 d-flex align-items-center justify-content-left">
-          <Contents className="d-flex align-items-center justify-content-left">
+          <ContentsWrapper className="d-flex align-items-center justify-content-left">
             <ContentText text={`
               はじめまして、Naokiです。
-              SES系企業、受託開発企業を経験して今に至ります。
-              SES系企業では主にJavaを使用し、
-              受託開発企業では主にJavaScript(TypeScript含む)を使用して
-              開発を行なっておりました。
+              SES系企業、受託開発系企業でプログラマとして従事してきました。
+              フロントエンドに軸足を置いておりますが、バックエンドにも興味を持っています。
+              詳しい経歴は別途、職務経歴書をご確認いただければと思います。
               `} />
-          </Contents>
+          </ContentsWrapper>
         </Col>
       </Row>
     </Container>
@@ -48,12 +54,9 @@ const Contents = function (props: any) {
 };
 
 export default function About(props: any) {
-  const About = styled.section`
-    vertical-align: middle;
-  `
   return (
-    <About>
+    <AboutWrapper>
       <Contents />
-    </About>
+    </AboutWrapper>
   );
 }
