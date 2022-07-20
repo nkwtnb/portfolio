@@ -41,7 +41,7 @@ const Contents = function (props: any) {
         <Col md={6} className="w-100 h-100 d-flex align-items-center justify-content-left">
           <ContentsWrapper className="d-flex align-items-center justify-content-left">
             <ContentText text={`
-              はじめまして、Naokiです。
+              はじめまして、Naokiと申します。
               SES系企業、受託開発系企業でプログラマとして従事してきました。
               フロントエンドに軸足を置いておりますが、バックエンドにも興味を持っています。
               詳しい経歴は別途、職務経歴書をご確認いただければと思います。
