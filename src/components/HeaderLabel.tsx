@@ -12,7 +12,7 @@ font-size: 40px;
 color: ${(props) => props.color1 ? props.color1 : "#484848"};
 font-weight: bold;
 width: 100%;
-padding-top: 40px;
+padding-top: 60px;
 `;
 
 export default function HeaderLabel(props: HeaderLabelProps) {
