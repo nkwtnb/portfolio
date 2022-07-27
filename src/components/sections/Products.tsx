@@ -28,6 +28,13 @@ const Contents = function (props: any) {
               skills: ["TypeScript", "React", "React Router", "PHP", "Laravel"]
             },
             {
+              title: "KintoneUITestLibrary",
+              detail: "kintoneのUIテストをPlaywrightで実施する際に、コーディングを効率化するライブラリ",
+              github: "https://github.com/nkwtnb/KintoneUITestLibrary",
+              image: NoImage.src,
+              skills: ["Node.js", "Playwright"]
+            },
+            {
               title: "OGParser",
               detail: "WebページのOGPを取得するライブラリです。",
               github: "https://github.com/nkwtnb/OGParser",
