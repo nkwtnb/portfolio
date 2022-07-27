@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Container, Row } from "react-bootstrap";
 import ProductItem from "../ProductItem";
 import Product1 from "../../resources/images/product1.png";
-import NoImage from "../../resources/images/noimage.png";
+import NoImage from "../../resources/images/NoImage.jpg";
 import Monologue from "../../resources/images/monologue.png";
 
 const Contents = function (props: any) {
