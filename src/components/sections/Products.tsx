@@ -17,7 +17,7 @@ const Contents = function (props: any) {
               image: Product1.src,
               github: "https://github.com/nkwtnb/gh-pages-portfolio",
               url: "https://nkwtnb.github.io/gh-pages-portfolio/",
-              skills: ["TypeScript", "React", "Bootstrap(React-Bootstrap)", "styled-components"]
+              skills: ["TypeScript", "Next.js", "React", "Bootstrap(React-Bootstrap)", "styled-components"]
             },
             {
               title: "Monologue",
@@ -29,7 +29,7 @@ const Contents = function (props: any) {
             },
             {
               title: "KintoneUITestLibrary",
-              detail: "kintoneのUIテストをPlaywrightで実施する際に、コーディングを効率化するライブラリ",
+              detail: "kintoneのUIテストをPlaywrightで実施する際に、コーディングを効率化するライブラリです。",
               github: "https://github.com/nkwtnb/KintoneUITestLibrary",
               image: NoImage.src,
               skills: ["Node.js", "Playwright"]
