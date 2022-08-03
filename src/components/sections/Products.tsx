@@ -15,8 +15,8 @@ const Contents = function (props: any) {
               title: "Portfolio",
               detail: "自分のポートフォリオページです。（このページ）",
               image: Product1.src,
-              github: "https://github.com/nkwtnb/gh-pages-portfolio",
-              url: "https://nkwtnb.github.io/gh-pages-portfolio/",
+              github: "https://github.com/nkwtnb/portfolio",
+              url: "https://nkwtnb.github.io/portfolio/",
               skills: ["TypeScript", "Next.js", "React", "Bootstrap(React-Bootstrap)", "styled-components"]
             },
             {
