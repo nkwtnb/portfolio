@@ -5,7 +5,7 @@ export default function Document() {
   return (
     <Html>
       <Head>
-        <link rel="icon" type="image/png" sizes="32x32" href="/gh-pages-portfolio/profile.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/portfolio/profile.png" />
       </Head>
       <body>
         <Main />
