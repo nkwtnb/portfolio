@@ -1,0 +1,44 @@
+
+.s-conts {
+  max-width: 1000px;
+  margin: 4% auto;
+}
+
+.layout-block {
+  display: flex;
+  justify-content: space-between;
+  gap: 0 2rem;
+  flex-direction:column;
+}
+
+.box-conts {
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 3rem;
+}
+
+.box-txt {
+  padding: 1rem 0;
+}
+
+.box-btn {
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  border: 1px solid #333;
+  color: #333;
+  padding: 0.5rem;
+  margin-top: auto;
+}
+
+@media screen and (min-width:768px) {
+
+  .layout-block {
+    flex-direction: row;
+  }
+
+  .box-conts {
+    padding: 0;
+  }
+
+}
