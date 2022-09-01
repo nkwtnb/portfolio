@@ -1,10 +1,11 @@
 import { Container, Row, Col } from "react-bootstrap";
 import styled from "styled-components";
-import NoImage from "../resources/images/noimage.png";
+import NoImage from "../resources/images/NoImage.jpg"
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { Repository } from "../hooks/useProductFetcher";
 
 type IconProps = {
   name: IconProp;
@@ -29,28 +30,13 @@ const Icon = function (props: IconProps) {
 }
 
 type ProductItem = {
-  items: {
-    title: string;
-    detail: string;
-    skills: string[];
-    image?: string;
-    github?: string;
-    url?: string;
-  }[]
+  items: Repository[]
 }
-
-//各プロダクトカード
-const Card = styled.div`
-  width: 340px;
-  height: 540px;
-  border: 1px solid #ddd;
-`;
 
 const Item = function (props: any) {
   return (
-    <Col md={4} className="w-100 d-flex justify-content-center" style={{height: "100%", paddingTop: 20}}>
-      <Card className="d-flex align-items-top justify-content-center">
-        <Container style={{ padding: 0 }}>
+        <Col lg={4} className="w-100 d-flex flex-column mb-4" style={{minHeight: "560px"}}>
+          <div className="flex-grow-1" style={{border: "1px solid #ddd"}}>
           {/* プロダクトカード：ヘッダ */}
           <div style={{display: "table", height: 40, width: "100%", padding: "8px"}}>
             <div style={{display: "table-cell"}}>
@@ -66,25 +52,19 @@ const Item = function (props: any) {
             <img src={props.image} style={{width: "100%", height: "auto"}}/>
           </div>
           {/* プロダクトカード：説明エリア */}
-          <div style={{padding: 8}}>
-            <div style={{fontSize: "12px", fontWeight: "Bold"}}>説明</div>
-            <div style={{height: "40px", fontSize: "12px", whiteSpace: "break-spaces"}}>
-              {props.detail}
+          <div className="flex-grow-1 d-flex flex-column" style={{padding: 8}}>
+            <div style={{fontSize: "14px", fontWeight: "Bold"}}>説明</div>
+            <div style={{fontSize: "14px", whiteSpace: "break-spaces"}}>
+              {props.description}
             </div>
             <div style={{marginTop: 20}}></div>
-            <div style={{fontSize: "12px", fontWeight: "Bold"}}>言語、ライブラリなど</div>
-            <div style={{fontSize: "12px",  whiteSpace: "break-spaces"}}>
-              {
-                props.skills.map((skill: string, index: number) => {
-                  const comma: string = (index + 1) < props.skills.length ? ", " : "";
-                  return <span style={{display: "inline-block"}} key={index}>{skill + comma}</span>
-                })
-              }
+            <div style={{fontSize: "14px", fontWeight: "Bold"}}>使用言語、ライブラリ(<a href="https://github.com/topics" target={"_blank"}>GitHub Topics</a>)</div>
+            <div style={{fontSize: "14px",  whiteSpace: "break-spaces"}}>
+              {props.skills.join(", ")}
             </div>
           </div>
-        </Container>
-      </Card>
-    </Col>
+          </div>
+        </Col>
   )
 }
 
@@ -94,15 +74,15 @@ export default function ProductItem(props: ProductItem) {
       {
         props.items.map((content, index) => {
           // プロダクトイメージ未設定の場合はNoImageを設定
-          const image = content.image ? content.image : NoImage;
+          const image = content.thumbnail ? content.thumbnail : NoImage.src;
           return <Item
                     key={index}
                     image={image}
-                    skills={content.skills}
-                    title={content.title}
-                    detail={content.detail}
-                    github={content.github}
-                    url={content.url}
+                    skills={content.skills ? content.skills : []}
+                    title={content.name}
+                    description={content.description}
+                    github={content.svn_url}
+                    url={content.homepage}
                   />;
         })
       }
