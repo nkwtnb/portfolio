@@ -6,6 +6,7 @@ import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { Repository } from "../hooks/useProductFetcher";
+import { Topic } from "./Topic";
 
 type IconProps = {
   name: IconProp;
@@ -60,7 +61,11 @@ const Item = function (props: any) {
             <div style={{marginTop: 20}}></div>
             <div style={{fontSize: "14px", fontWeight: "Bold"}}>使用言語、ライブラリ(<a href="https://github.com/topics" target={"_blank"}>GitHub Topics</a>)</div>
             <div style={{fontSize: "14px",  whiteSpace: "break-spaces"}}>
-              {props.skills.join(", ")}
+              {
+                props.skills.map((skill: string) => {
+                  return <Topic name={skill} />
+                })
+              }
             </div>
           </div>
           </div>
