@@ -14,16 +14,33 @@ type IconProps = {
   url: string;
 }
 
+const IconWrapper = styled.span`
+  margin-left: 10px;
+`;
+
+const FontAwesomeWrapper = styled.span`
+  border-radius: 10px;
+  padding: 4px 4px;
+  color: #000;
+  transition: all 0.3s ease;
+  &:hover {
+    background-color: #484848;
+    color: white;
+  }
+`;
+
 // プロダクトカードの右上アイコン
 // URLが未設定であれば描画しない
 const Icon = function (props: IconProps) {
   if (props.url) {
     return (
-      <a href={props.url} style={{ color: "#000"}} target="_blank">
-      <span style={{padding: "0px 10px", color: "#000"}}>
-          <FontAwesomeIcon icon={props.name}></FontAwesomeIcon>
-      </span>
-      </a>
+      <IconWrapper>
+        <a href={props.url} style={{ color: "#000"}} target="_blank">
+          <FontAwesomeWrapper>
+              <FontAwesomeIcon icon={props.name}></FontAwesomeIcon>
+          </FontAwesomeWrapper>
+        </a>
+      </IconWrapper>
     );
   } else {
     return <></>;
@@ -44,8 +61,8 @@ const Item = function (props: any) {
               <span style={{fontSize: "18px", fontWeight: "bold"}}>{props.title}</span>
             </div>
             <div style={{display: "table-cell", textAlign: "right"}}>
-              <span><Icon type="github" url={props.github} name={faGithub}></Icon></span>
-              <span><Icon type="link" url={props.url} name={faExternalLinkAlt}></Icon></span>
+              <Icon type="github" url={props.github} name={faGithub}></Icon>
+              <Icon type="link" url={props.url} name={faExternalLinkAlt}></Icon>
             </div>
           </div>
           {/* プロダクトカード：イメージ */}

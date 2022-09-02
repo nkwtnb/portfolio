@@ -10,10 +10,11 @@ const TopicArea = style.a`
   border-radius: 10px;
   padding: 2px 10px;
   color: #111;
-  border: 1px solid #111;
+  border: 1px solid #484848;
+  transition: all 0.2s 0s linear;
   &:hover {
     color: #fff;
-    background-color: #111;
+    background-color: #484848;
     text-decoration: none;
   }
 `;
