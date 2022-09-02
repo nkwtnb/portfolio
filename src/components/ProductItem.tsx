@@ -62,8 +62,8 @@ const Item = function (props: any) {
             <div style={{fontSize: "14px", fontWeight: "Bold"}}>使用言語、ライブラリ(<a href="https://github.com/topics" target={"_blank"}>GitHub Topics</a>)</div>
             <div style={{fontSize: "14px",  whiteSpace: "break-spaces"}}>
               {
-                props.skills.map((skill: string) => {
-                  return <Topic name={skill} />
+                props.skills.map((skill: string, index: number) => {
+                  return <Topic name={skill} key={index}/>
                 })
               }
             </div>
