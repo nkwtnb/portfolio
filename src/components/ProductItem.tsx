@@ -49,8 +49,8 @@ const Item = function (props: any) {
             </div>
           </div>
           {/* プロダクトカード：イメージ */}
-          <div className="d-flex align-items-center" style={{height: 350, borderTop: "1px solid #ddd", borderBottom: "1px solid #ddd"}}>
-            <img src={props.image} style={{width: "100%", height: "auto"}}/>
+          <div className="d-flex align-items-center justify-content-center" style={{height: 350, borderTop: "1px solid #ddd", borderBottom: "1px solid #ddd"}}>
+            <img src={props.image} style={{width: "auto", height: "auto", maxWidth: "100%", maxHeight: "100%"}}/>
           </div>
           {/* プロダクトカード：説明エリア */}
           <div className="flex-grow-1 d-flex flex-column" style={{padding: 8}}>
