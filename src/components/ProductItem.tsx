@@ -56,11 +56,11 @@ const Item = function (props: any) {
         <Col lg={4} className="w-100 d-flex flex-column mb-4" style={{minHeight: "560px"}}>
           <div className="flex-grow-1" style={{border: "1px solid #ddd"}}>
           {/* プロダクトカード：ヘッダ */}
-          <div style={{display: "table", height: 40, width: "100%", padding: "8px"}}>
-            <div style={{display: "table-cell"}}>
+          <div className="d-flex" style={{minHeight: 40, width: "100%", padding: "8px"}}>
+            <div className="d-flex text-break">
               <span style={{fontSize: "18px", fontWeight: "bold"}}>{props.title}</span>
             </div>
-            <div style={{display: "table-cell", textAlign: "right"}}>
+            <div className="d-flex ml-auto align-items-center">
               <Icon type="github" url={props.github} name={faGithub}></Icon>
               <Icon type="link" url={props.url} name={faExternalLinkAlt}></Icon>
             </div>
