@@ -69,13 +69,13 @@ const Item = function (props: any) {
           <div className="d-flex align-items-center justify-content-center" style={{aspectRatio: "16/9", backgroundSize: "cover", backgroundPosition: "center",  backgroundImage: `url(${props.image})`, borderTop: "1px solid #ddd", borderBottom: "1px solid #ddd"}} />
           {/* プロダクトカード：説明エリア */}
           <div className="flex-grow-1 d-flex flex-column" style={{padding: 8}}>
-            <div style={{fontSize: "14px", fontWeight: "Bold"}}>説明</div>
-            <div style={{fontSize: "14px", whiteSpace: "break-spaces"}}>
+            <div style={{fontSize: "16px", fontWeight: "Bold"}}>説明</div>
+            <div style={{fontSize: "16px", whiteSpace: "break-spaces"}}>
               {props.description}
             </div>
             <div style={{marginTop: 20}}></div>
-            <div style={{fontSize: "14px", fontWeight: "Bold"}}>使用言語、ライブラリ(<a href="https://github.com/topics" target={"_blank"}>GitHub Topics</a>)</div>
-            <div style={{fontSize: "14px",  whiteSpace: "break-spaces"}}>
+            <div style={{fontSize: "16px", fontWeight: "Bold"}}>使用言語、ライブラリ(<a href="https://github.com/topics" target={"_blank"}>GitHub Topics</a>)</div>
+            <div style={{fontSize: "16px",  whiteSpace: "break-spaces"}}>
               {
                 props.skills.map((skill: string, index: number) => {
                   return <Topic name={skill} key={index}/>
