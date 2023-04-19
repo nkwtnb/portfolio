@@ -1,12 +1,14 @@
 import useSWR from "swr";
+import kron_thumbnail from "../resources/images/kron.nw-apps.jp_lp.png"
 
 export interface Repository {
   name: string
   description: string
-  svn_url: string
+  svn_url?: string
   homepage?: string
   thumbnail?: string
   skills?: string[]
+  isPrivate?: boolean
 }
 
 interface GitHubApiResponse {
@@ -37,6 +39,23 @@ const sort = (repositories: Repository[]) => {
   return filtered;
 }
 
+const mergePrivateRepository = (repositories: Repository[]) => {
+  const privateRepos: Repository[] = [
+    {
+      name: "kron",
+      description: "kintoneのレコードデータと添付ファイルを自動で毎日CSV出力するWebサービスです。",
+      homepage: "https://kron.nw-apps.jp/lp",
+      skills: ["ruby", "rails", "tailwindcss", "typescript", "jest", "sendgrid", "cloudrun",],
+      thumbnail: kron_thumbnail.src,
+      isPrivate: true
+    }
+  ]
+  privateRepos.forEach(repo => {
+    repositories.push(repo)
+  })
+  return repositories
+}
+
 const repositoryFetcher = async (url: string) => {
   const data = await fetch(url).then(r => r.json());
   const repositories = data.items.map((item: GitHubApiResponse): Repository => {
@@ -48,20 +67,22 @@ const repositoryFetcher = async (url: string) => {
       skills: item.topics.filter(topic => topic !== "portfolio") // portfolio以外の使用スキルタグを表示
     }
   });
-  return repositories;
+  const mergedRepositories = mergePrivateRepository(repositories)
+  return mergedRepositories;
 }
 const thumbnailFetcher = async (url: string, repositories: Repository[]) => {
   if (!repositories) {
     return;
   }
   const thumbnails = await Promise.all(repositories.map(async repo => {
+    if (repo.isPrivate) return repo
     const BRANCHES_URL = `https://api.github.com/repos/nkwtnb/${repo.name}/branches`;
     const branches = await fetch(BRANCHES_URL).then(r => r.json());
     const hasImages = branches.some((branch: any) => branch.name === "images");
     if (!hasImages) return repo;
     const URL = `https://api.github.com/repos/nkwtnb/${repo.name}/contents/thumbnail.png?ref=images`;
     const resp = await fetch(URL).then(r => r.json());
-    repo.thumbnail = "data:image/png;base64," + resp.content;
+    repo.thumbnail = resp.download_url;
     return repo;
   }));
 
@@ -78,9 +99,8 @@ const makeResponse = (data?: Repository[], error?: Error): Response => {
 
 export const useProductFetcher = (): Response => {
   const URL = "https://api.github.com/search/repositories?q=user:nkwtnb+topic:portfolio";
-  const {data: repositories, error: errorOnRepository} = useSWR(URL, repositoryFetcher);
-
- const {data: thumbnails, error: errorOnThumbnail} = useSWR([URL, repositories], thumbnailFetcher);
+  const {data: repositories, error: errorOnRepository} = useSWR<Repository[]>(URL, repositoryFetcher);
+  const {data: thumbnails, error: errorOnThumbnail} = useSWR([URL, repositories], thumbnailFetcher);
   if (errorOnThumbnail) return makeResponse(undefined, errorOnThumbnail);
   if (!thumbnails) return makeResponse(undefined, undefined);
   const sorted = sort(thumbnails); 
