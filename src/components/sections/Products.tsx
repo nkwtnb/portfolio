@@ -19,7 +19,7 @@ const Item = () => {
 
 const Contents = function (props: any) {
   return (
-    <Container fluid="lg" className="h-100 d-flex align-items-top justify-content-center">
+    <Container fluid="xxl" className="h-100 d-flex align-items-top justify-content-center">
       <Row className="w-100 h-100">
         <Item />
       </Row>
