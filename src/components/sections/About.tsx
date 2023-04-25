@@ -40,12 +40,18 @@ const Contents = function (props: any) {
         </Col>
         <Col md={6} className="w-100 h-100 d-flex align-items-center justify-content-left">
           <ContentsWrapper className="d-flex align-items-center justify-content-left">
-            <ContentText text={`
-              はじめまして、Naokiと申します。
-              SES系企業、受託開発系企業でプログラマとして従事してきました。
-              フロントエンドに軸足を置いておりますが、バックエンドにも興味を持っています。
-              詳しい経歴は別途、職務経歴書をご確認いただければと思います。
-              `} />
+            <div>
+              <ContentText text={`
+                はじめまして、Naokiと申します。
+                SES系企業、受託開発系企業でプログラマとして従事してきました。
+                フロントエンドに軸足を置いておりますが、バックエンドにも興味を持っています。
+                詳しい経歴は別途、職務経歴書をご確認いただければと思います。
+                `} />
+              <div className="d-flex">
+                <p className=""><a href="https://twitter.com/nkwtnb" target="_blank"><img src="https://img.shields.io/badge/twitter-black?style=for-the-badge&logo=twitter" /></a></p>
+                <p className="ml-2"><a href="https://github.com/nkwtnb" target="_blank"><img src="https://img.shields.io/badge/GitHub-black?style=for-the-badge&logo=github" /></a></p>
+              </div>
+            </div>
           </ContentsWrapper>
         </Col>
       </Row>
