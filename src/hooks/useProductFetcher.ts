@@ -26,67 +26,57 @@ interface Response {
 }
 
 const sort = (repositories: Repository[]) => {
-  const sorted = repositories.sort((a: any, b: any) => {
-    if (a.name.toUpperCase() > b.name.toUpperCase()) return -1
-    if (a.name.toUpperCase() < b.name.toUpperCase()) return 1
-    return 0;
-  })
-  // ポートフォリオのリポジトリは先頭に表示する
-  const index = sorted.findIndex(repo => repo.name === "portfolio");
-  const portfolio = sorted[index];
-  const filtered = sorted.filter(repo => repo.name !== "portfolio");
-  filtered.unshift(portfolio);
-  return filtered;
+  return repositories
+  // const sorted = repositories.sort((a: any, b: any) => {
+  //   if (a.name.toUpperCase() > b.name.toUpperCase()) return -1
+  //   if (a.name.toUpperCase() < b.name.toUpperCase()) return 1
+  //   return 0;
+  // })
+  // // ポートフォリオのリポジトリは先頭に表示する
+  // const index = sorted.findIndex(repo => repo.name === "portfolio");
+  // const portfolio = sorted[index];
+  // const filtered = sorted.filter(repo => repo.name !== "portfolio");
+  // filtered.unshift(portfolio);
+  // return filtered;
 }
 
 // プライベートリポジトリは、APIで取得できないため、個別で記載する
-const mergePrivateRepository = (repositories: Repository[]) => {
-  const privateRepos: Repository[] = [
+const getRepositories = () => {
+  const repos: Repository[] = [
     {
       name: "kron",
       description: "kintoneのレコードデータと添付ファイルを自動で毎日CSV出力するWebサービスです。",
       // homepage: "https://kron.nw-apps.jp/lp",
       skills: ["ruby", "rails", "tailwindcss", "typescript", "jest", "sendgrid", "cloudrun",],
-      thumbnail: kron_thumbnail.src,
+      thumbnail: "https://raw.githubusercontent.com/nkwtnb/xlsx-creator-web/refs/heads/images/thumbnail.png",
       isPrivate: true
     }
   ]
-  privateRepos.forEach(repo => {
-    repositories.push(repo)
-  })
-  return repositories
+  return repos
 }
 
 const repositoryFetcher = async (url: string) => {
-  const data = await fetch(url).then(r => r.json());
-  const repositories = data.items.map((item: GitHubApiResponse): Repository => {
-    return {
-      name: item.name,
-      description:  item.description,
-      svn_url: item.svn_url,
-      homepage: item.homepage,
-      skills: item.topics.filter(topic => topic !== "portfolio") // portfolio以外の使用スキルタグを表示
-    }
-  });
-  const mergedRepositories = mergePrivateRepository(repositories)
+  //
+  const mergedRepositories = getRepositories()
   return mergedRepositories;
 }
 const thumbnailFetcher = async (url: string, repositories: Repository[]) => {
+  console.log("repos", repositories)
   if (!repositories) {
     return;
   }
   const thumbnails = await Promise.all(repositories.map(async repo => {
-    if (repo.isPrivate) return repo
-    const BRANCHES_URL = `https://api.github.com/repos/nkwtnb/${repo.name}/branches`;
-    const branches = await fetch(BRANCHES_URL).then(r => r.json());
-    const hasImages = branches.some((branch: any) => branch.name === "images");
-    if (!hasImages) return repo;
-    const URL = `https://api.github.com/repos/nkwtnb/${repo.name}/contents/thumbnail.png?ref=images`;
-    const resp = await fetch(URL).then(r => r.json());
-    repo.thumbnail = resp.download_url;
+    // if (repo.isPrivate) return repo
+    // const BRANCHES_URL = `https://api.github.com/repos/nkwtnb/${repo.name}/branches`;
+    // const branches = await fetch(BRANCHES_URL).then(r => r.json());
+    // const hasImages = branches.some((branch: any) => branch.name === "images");
+    // if (!hasImages) return repo;
+    // const URL = `https://api.github.com/repos/nkwtnb/${repo.name}/contents/thumbnail.png?ref=images`;
+    // const resp = await fetch(URL).then(r => r.json());
+    // repo.thumbnail = resp.download_url;
     return repo;
   }));
-
+  console.log("thub", thumbnails)
   return thumbnails;
 }
 
@@ -105,6 +95,7 @@ export const useProductFetcher = (): Response => {
   if (errorOnThumbnail) return makeResponse(undefined, errorOnThumbnail);
   if (!thumbnails) return makeResponse(undefined, undefined);
   const sorted = sort(thumbnails); 
+  console.log(sorted)
   return {
     data: sorted,
     error: errorOnThumbnail,
