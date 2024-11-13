@@ -39,12 +39,13 @@ const sort = (repositories: Repository[]) => {
   return filtered;
 }
 
+// プライベートリポジトリは、APIで取得できないため、個別で記載する
 const mergePrivateRepository = (repositories: Repository[]) => {
   const privateRepos: Repository[] = [
     {
       name: "kron",
       description: "kintoneのレコードデータと添付ファイルを自動で毎日CSV出力するWebサービスです。",
-      homepage: "https://kron.nw-apps.jp/lp",
+      // homepage: "https://kron.nw-apps.jp/lp",
       skills: ["ruby", "rails", "tailwindcss", "typescript", "jest", "sendgrid", "cloudrun",],
       thumbnail: kron_thumbnail.src,
       isPrivate: true

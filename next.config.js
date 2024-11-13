@@ -3,6 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   assetPrefix: '/portfolio',
   basePath: '/portfolio',
+  output: "export",
 }
 
 module.exports = {
