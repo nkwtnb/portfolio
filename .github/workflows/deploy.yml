@@ -1,74 +1,74 @@
-# This is a basic workflow to help you get started with Actions
+# # This is a basic workflow to help you get started with Actions
 
-name: deploy
+# name: deploy
 
-# Controls when the workflow will run
-on:
-  # Triggers the workflow on push or pull request events but only for the main branch
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+# # Controls when the workflow will run
+# on:
+#   # Triggers the workflow on push or pull request events but only for the main branch
+#   push:
+#     branches: [ main ]
+#   pull_request:
+#     branches: [ main ]
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+#   # Allows you to run this workflow manually from the Actions tab
+#   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
-jobs:
-  # This workflow contains a single job called "build"
-  # build:
-  #   # The type of runner that the job will run on
-  #   runs-on: ubuntu-20.04
+# # A workflow run is made up of one or more jobs that can run sequentially or in parallel
+# jobs:
+#   # This workflow contains a single job called "build"
+#   # build:
+#   #   # The type of runner that the job will run on
+#   #   runs-on: ubuntu-20.04
 
-  #   # Steps represent a sequence of tasks that will be executed as part of the job
-  #   steps:
-  #     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-  #     - uses: actions/checkout@v2
+#   #   # Steps represent a sequence of tasks that will be executed as part of the job
+#   #   steps:
+#   #     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+#   #     - uses: actions/checkout@v2
 
-  #     # Runs a single command using the runners shell
-  #     - name: Run a one-line script
-  #       run: echo Hello, world!
+#   #     # Runs a single command using the runners shell
+#   #     - name: Run a one-line script
+#   #       run: echo Hello, world!
 
-  #     # Runs a set of commands using the runners shell
-  #     - name: Run a multi-line script
-  #       run: |
-  #         echo Add other actions to build,
-  #         echo test, and deploy your project.
-  build_and_deploy:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-20.04
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+#   #     # Runs a set of commands using the runners shell
+#   #     - name: Run a multi-line script
+#   #       run: |
+#   #         echo Add other actions to build,
+#   #         echo test, and deploy your project.
+#   build_and_deploy:
+#     # The type of runner that the job will run on
+#     runs-on: ubuntu-20.04
+#     # Steps represent a sequence of tasks that will be executed as part of the job
+#     steps:
+#       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+#       - uses: actions/checkout@v2
 
-      # Node.js環境のセットアップを行う
-      - name: setup node
-        uses: actions/setup-node@v1
-        with:
-          node-version: '16.13'
+#       # Node.js環境のセットアップを行う
+#       - name: setup node
+#         uses: actions/setup-node@v1
+#         with:
+#           node-version: '16.13'
       
-      - name: cache dependencies
-        uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: node-
+#       - name: cache dependencies
+#         uses: actions/cache@v1
+#         with:
+#           path: ~/.npm
+#           key: node-${{ hashFiles('**/package-lock.json') }}
+#           restore-keys: node-
 
-      - name: install
-        run: npm ci
+#       - name: install
+#         run: npm ci
 
-      - name: build
-        run: npm run build
+#       - name: build
+#         run: npm run build
 
-      - name: export
-        run: npm run export
+#       - name: export
+#         run: npm run export
 
-      - name: add jekyll
-        run: touch ./out/.nojekyll
+#       - name: add jekyll
+#         run: touch ./out/.nojekyll
 
-      - name: deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./out
+#       - name: deploy
+#         uses: peaceiris/actions-gh-pages@v3
+#         with:
+#           github_token: ${{ secrets.GITHUB_TOKEN }}
+#           publish_dir: ./out
